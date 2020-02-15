@@ -1,0 +1,9 @@
+
+CL-USER 1 > (defun convertir (f)
+(* (- f 32)(/ 5 9)))
+CONVERTIR
+
+CL-USER 2 > (convertir 48)
+80/9
+
+CL-USER 3 > 
