@@ -5,8 +5,8 @@
 ;Inspirado en Lisp Expert System de Joao Medeiros (jpzm)
 ;Extraido de: https://gist.github.com/jpzm/ff72beaedd4f381e6defffe701e7594f
 ;Julio Herrera 19402
-;Oliver De Leon 19
-;Laura Tamath 19
+;Oliver De Leon 19270
+;Laura Tamath 19365
 
 ;Definiendo reglas
 (defvar database)
