@@ -20,7 +20,7 @@ public class OpAritmeticas implements IOperaciones{
 		resta =- resta;
 		} else{
 			for(int i=1; i<numeros.size(); i ++){
-				resta -+ numeros.get(i)
+				resta =+ numeros.get(i);
 			}
 		}
 		return resta;
@@ -28,11 +28,11 @@ public class OpAritmeticas implements IOperaciones{
 	//Metodo que realiza la operacion: suma
 	public double sumar(ArrayList<Double> numeros){
 		double suma =0;
-		if(numeros.size()=1){
+		if(numeros.size()==1){
 			suma = numeros.get(0);
 		}else{
-			for (double numeros: numeros){
-				suma += numeros;
+			for (double numeros1: numeros){
+				suma += numeros1;
 			}
 		}
 		return suma;
@@ -125,7 +125,7 @@ public class OpAritmeticas implements IOperaciones{
             //Si quiere multiplicar un numero con otro
             case "*": 
             	operando = multiplicar(nums);
-            	break
+            	break;
             //Si quiere sumar un numero con otro
             case "+": 
             	operando = sumar(nums);
@@ -136,6 +136,16 @@ public class OpAritmeticas implements IOperaciones{
             	break;
     	}
     }
+	@Override
+	public double operaciones(String operacion, ArrayList<Double> num) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	@Override
+	public double restar(ArrayList<Double> numeros) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
     
 }
 
