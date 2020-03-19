@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 class Runtime {
 
@@ -19,7 +20,7 @@ class Runtime {
         split();
         for (ArrayList<Object> function : functions) {
             Function newFunction = new Function();
-            System.out.println("La funcion: " + function);
+            System.out.println("La funcion es: " + function);
             newFunction.denifition(
                 (String)function.get(0),
                 (ArrayList<Object>)function.get(1),
@@ -56,9 +57,9 @@ class Runtime {
     /**
      * variables necesarias para separar
      */
-    ArrayList<Integer> contDefun = new ArrayList<>();
-    ArrayList<Integer> contOp = new ArrayList<>();
-    ArrayList<String> contIns = new ArrayList<>();
+    Stack<Integer> contDefun = new Stack<>();
+    Stack<Integer> contOp = new Stack<>();
+    Stack<String> contIns = new Stack<>();
     /**
      * instruccion actual
      */
@@ -76,7 +77,6 @@ class Runtime {
          */
         functions.get(contDefun.get(contDefun.size() - 1)).add(aritmetics.get(contOp.get(contOp.size() - 1)));
         aritmetics.remove(aritmetics.size() - 1);
-        System.out.println(functions.get(0));
     }
 
     /**

@@ -6,9 +6,30 @@ public class Function{
 	
 	OpAritmeticas OA = new OpAritmeticas();
 
+	class Param<K, V> {
+		K key;
+		V value;
+		public Param(K key, V value) {
+			this.key = key;
+			this.value = value;
+		}
+
+		public void setValue(V value) {
+			this.value = value;
+		}
+
+		public K getKey() {
+			return this.key;
+		}
+
+		public V getValue() {
+			return this.value;
+		}
+	}
+
 	//Attributes
 	private String name;//Function's name
-	private HashMap<String,Object> parameters = new HashMap<>();
+	private ArrayList<Param<String, Object>> parameters = new ArrayList<>();
 	private HashMap<String,Object> defun = new HashMap<>();;//Hold function and content
 	private List<Object> content; //Function's instruction (content)
 	private List<Object> nameParameter; //Parameter's name
@@ -34,8 +55,10 @@ public class Function{
 	public void denifition(String name, ArrayList<Object> params, ArrayList<Object> content) {
 		this.name = name;
 		this.nameParameter = params;
+		int contParam = 0;
 		for (Object param: params) {
-			this.parameters.put((String)param, null);
+			this.parameters.add(new Param((String)param, contParam));
+			contParam++;
 		}
 		this.content = content;
 		defun.put(name, content);
@@ -47,6 +70,14 @@ public class Function{
 	 * @return
 	 */
 	public String function(ArrayList<Object> call) {
+		int contParam = 0;
+		for (Object value : call) {
+			for (Param<String, Object> param : parameters) {
+				if ((int)param.getValue() == contParam) {
+					param.setValue(value);
+				}
+			}
+		}
 		//Content is called
 		String task = defun.get(call.get(0)).toString();
 		parameter = call.get(1); //Parameter is stored
