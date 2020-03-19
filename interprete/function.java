@@ -2,7 +2,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
 
-public class function{
+public class Function{
 	
 	OpAritmeticas OA = new OpAritmeticas();
 

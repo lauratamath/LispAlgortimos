@@ -87,6 +87,10 @@ public class Main {
 		/**
 		 * Se pide al usuario que funcion quiere ejecutar
 		 */
+		System.out.println("Escriba la funcion que quiere ejecutar con la sintaxis correcta de lisp: ");
+		System.out.print("User> ");
+		String command = scan.nextLine();
+		runtime.executeCommand(command);
 		scan.close();
 	}
 }

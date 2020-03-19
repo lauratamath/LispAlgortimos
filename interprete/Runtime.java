@@ -20,6 +20,15 @@ class Runtime {
     }
 
     /**
+     * para ejecutar un comando del usuario
+     */
+    public void executeCommand(String command) {
+        separateCommand(command);
+        String name = (String)separateCommand(command).get(0);
+        ArrayList<Object> params = (ArrayList<Object>)separateCommand(command).get(1); //unsafe cast
+    }
+
+    /**
      * Aqui se separa el string y se leen cada de cuantas cosas va a haber
      * Siguen siendo solo strings
      */
@@ -51,6 +60,7 @@ class Runtime {
          */
         functions.get(contDefun.get(contDefun.size() - 1)).add(aritmetics.get(contOp.get(contOp.size() - 1)));
         aritmetics.remove(aritmetics.size() - 1);
+        System.out.println(functions.get(0));
     }
 
     /**
@@ -116,6 +126,22 @@ class Runtime {
             }
         }
         //TODO: al cerrar una igualar al contador la cantidad de instrucciones que se llevan
+    }
+
+    public ArrayList<Object> separateCommand(String command) {
+        command = command.replaceAll("\\(", "");
+        command = command.replaceAll("\\)", "");
+        String name = command.split(" ")[0];
+        ArrayList<Object> nameAndParameters = new ArrayList<>();
+        nameAndParameters.add(name);
+        ArrayList<Object> parameters = new ArrayList<>();
+        for (int i = 0; i < command.split(" ").length; i++) {
+            if (i > 0) {
+                parameters.add(command.split(" ")[i].replaceAll("\\,", ""));
+            }
+        }
+        nameAndParameters.add(parameters);
+        return nameAndParameters;
     }
 
 }
