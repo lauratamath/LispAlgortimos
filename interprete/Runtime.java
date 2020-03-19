@@ -25,7 +25,7 @@ class Runtime implements Context {
         ArrayList<Object> params = (ArrayList<Object>)separateCommand(command).get(1); //unsafe cast
         for (Function function : compiledFunctios) {
             if (function.getName().equals(name)) {
-                function.execute(params);
+                System.out.println(function.execute(params));
             }
         }
     }
@@ -171,6 +171,12 @@ class Runtime implements Context {
     @Override
     public void setContext(Context context) {
         //nothing to do;
+    }
+
+    @Override
+    public ArrayList<Variable<String, Object>> getVariables() {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

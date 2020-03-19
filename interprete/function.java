@@ -8,7 +8,7 @@ public class Function extends Instruction {
 		setContext(context);
 	}
 
-	class Param<K, V> {
+	/*class Param<K, V> {
 		K key;
 		V value;
 		public Param(K key, V value) {
@@ -27,11 +27,11 @@ public class Function extends Instruction {
 		public V getValue() {
 			return this.value;
 		}
-	}
+	}*/
 
 	//Attributes
 	private String name;//Function's name
-	private ArrayList<Param<String, Object>> parameters = new ArrayList<>();
+	private ArrayList<Variable<String, Object>> parameters = new ArrayList<>();
 	private HashMap<String,Object> defun = new HashMap<>();;//Hold function and content
 	private List<ArrayList<Object>> content; //Function's instruction (content)
 	private List<Object> nameParameter; //Parameter's name
@@ -59,7 +59,7 @@ public class Function extends Instruction {
 		this.nameParameter = params;
 		int contParam = 0;
 		for (Object param: params) {
-			this.parameters.add(new Param((String)param, contParam));
+			this.parameters.add(new Variable<String,Object>((String)param, contParam));
 			contParam++;
 		}
 		this.content = content;
@@ -71,68 +71,22 @@ public class Function extends Instruction {
 	 * @param call
 	 * @return
 	 */
-	public String execute(ArrayList<Object> call) {
+	public Object execute(ArrayList<Object> call) {
+		Object result = null;
 		int contParam = 0;
 		for (Object value : call) {
-			for (Param<String, Object> param : parameters) {
+			for (Variable<String, Object> param : parameters) {
 				if ((int)param.getValue() == contParam) {
 					param.setValue(value);
+					System.out.println("una vez");
+					this.addToVariable(param);
 				}
 			}
 		}
-		for (ArrayList<Object> ins : content) {
-			selectInstruction(ins);
+		System.out.println("en variables " + getVariables().get(0).getValue());
+		for (ArrayList<Object> ins : content) { //por el momento solo devuelve un resultado
+			result = selectInstruction(ins);
 		}
-
-
-
-		/*//Content is called
-		String task = defun.get(call.get(0)).toString();
-		parameter = call.get(1); //Parameter is stored
-		task.replaceAll(nameParameter.toString(), parameter.toString());
-		instr = task.split("");
-	
-		//Introduce all possible values
-		for (int i = 0; i < instr.length; i++) {
-			String current = instr[i];
-			
-			//Identify if it is a sign or a number
-			//If it is a sign
-			if (current.equalsIgnoreCase("+") || current.equalsIgnoreCase("-")
-					|| current.equalsIgnoreCase("/") || current.equalsIgnoreCase("*"))
-			{
-				sign.add(current);
-			}
-			//If it is a number
-			else{
-				num.add(Double.parseDouble(current));
-			}
-			
-			//Operates
-			//If there are enough values to operate then...
-			if(num.size() == 2) {
-				
-				String sign0 = sign.remove(sign.size()-1);
-				
-				//Look for the proper operation
-				switch(sign0){
-				case "+":
-					result = OA.sumar(num);
-					break;
-				case "-":
-					result = OA.retar(num);
-					break;
-				case "/":
-					result = OA.dividir(num);
-					break;
-				case "*":
-					result = OA.multiplicar(num);
-					break;
-				}
-				num.clear();
-				num.add(result);
-			}
-		}*/
-		return result.toString();
+		return result;
 	}
 }
