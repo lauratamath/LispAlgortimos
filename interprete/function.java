@@ -15,6 +15,7 @@ public class function{
 	private String[] instr; //Store the functions  by parts
 	private ArrayList<Double> num; //Store numbers
 	private ArrayList<String> sign; //Store signs
+	private Double result = 0.0; //Result
 
 	/**
 	 * pre: function must contain name, parameter and content
@@ -28,7 +29,8 @@ public class function{
 	 */
 	public void denifition(List function) {
 		name = function.get(0);
-		content = function.get(2).toString();
+		nameParameter = function.get(1);
+		content = function.get(2);
 		//parameters are added
 		defun.put(name, content);
 		
@@ -39,7 +41,7 @@ public class function{
 	 * @param call
 	 * @return
 	 */
-	public Object function(List call) {
+	public String function(List call) {
 		//Content is called
 		String task = defun.get(call.get(0)).toString();
 		parameter = call.get(1); //Parameter is stored
@@ -67,7 +69,6 @@ public class function{
 			if(num.size() == 2) {
 				
 				String sign0 = sign.remove(sign.size()-1);
-				Double result = 0.0;
 				
 				//Look for the proper operation
 				switch(sign0){
@@ -91,6 +92,6 @@ public class function{
 		
 		
 
-		return null;
+		return result.toString();
 	}
 }

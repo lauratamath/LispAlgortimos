@@ -28,7 +28,7 @@ public class OpAritmeticas implements IOperaciones{
 	//Metodo que realiza la operacion: suma
 	public double sumar(ArrayList<Double> numeros){
 		double suma =0;
-		if(numeros.size()==1){
+		if(numeros.size()== 2){
 			suma = numeros.get(0);
 		}else{
 			for (double numeros1: numeros){
