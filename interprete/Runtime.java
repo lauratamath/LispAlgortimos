@@ -17,8 +17,19 @@ class Runtime {
      */
     public void compile() {
         split();
+        for (ArrayList<Object> function : functions) {
+            Function newFunction = new Function();
+            System.out.println("La funcion: " + function);
+            newFunction.denifition(
+                (String)function.get(0),
+                (ArrayList<Object>)function.get(1),
+                (ArrayList<Object>)function.get(2)
+            );
+            compiledFunctios.add(newFunction);
+        }
     }
 
+    ArrayList<Function> compiledFunctios = new ArrayList<>(); 
     /**
      * para ejecutar un comando del usuario
      */
@@ -26,6 +37,11 @@ class Runtime {
         separateCommand(command);
         String name = (String)separateCommand(command).get(0);
         ArrayList<Object> params = (ArrayList<Object>)separateCommand(command).get(1); //unsafe cast
+        for (Function function : compiledFunctios) {
+            if (function.getName().equals(name)) {
+                function.function(params);
+            }
+        }
     }
 
     /**

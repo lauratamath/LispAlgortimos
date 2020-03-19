@@ -12,6 +12,8 @@ import java.util.ArrayList;
 
 public class OpAritmeticas implements IOperaciones{
 
+	public OpAritmeticas() {}
+
 //Operaciones aritmeticas
 	//Metodo que realiza la operacion: reta
 	public double retar (ArrayList<Double> numeros){
@@ -134,7 +136,8 @@ public class OpAritmeticas implements IOperaciones{
             case "-": 
             	operando = restar(nums);
             	break;
-    	}
+		}
+		return operando;
     }
 	@Override
 	public double operaciones(String operacion, ArrayList<Double> num) {

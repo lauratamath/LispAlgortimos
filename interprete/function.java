@@ -7,16 +7,20 @@ public class Function{
 	OpAritmeticas OA = new OpAritmeticas();
 
 	//Attributes
-	private Object name;//Function's name
-	private HashMap<Object,Object> defun;//Hold function and content
-	private Object content; //Function's instruction (content)
-	private Object nameParameter; //Parameter's name
+	private String name;//Function's name
+	private HashMap<String,Object> parameters = new HashMap<>();
+	private HashMap<String,Object> defun = new HashMap<>();;//Hold function and content
+	private List<Object> content; //Function's instruction (content)
+	private List<Object> nameParameter; //Parameter's name
 	private Object parameter; //Function's parameter
 	private String[] instr; //Store the functions  by parts
 	private ArrayList<Double> num; //Store numbers
 	private ArrayList<String> sign; //Store signs
 	private Double result = 0.0; //Result
 
+	public String getName() {
+		return this.name;
+	}
 	/**
 	 * pre: function must contain name, parameter and content
 	 * post:The three attributes are saved
@@ -27,13 +31,14 @@ public class Function{
 	 * 3. Executable content
 	 * @param function
 	 */
-	public void denifition(List function) {
-		name = function.get(0);
-		nameParameter = function.get(1);
-		content = function.get(2);
-		//parameters are added
+	public void denifition(String name, ArrayList<Object> params, ArrayList<Object> content) {
+		this.name = name;
+		this.nameParameter = params;
+		for (Object param: params) {
+			this.parameters.put((String)param, null);
+		}
+		this.content = content;
 		defun.put(name, content);
-		
 	}
 	/**
 	 * pre: call must no be empty 
@@ -41,7 +46,7 @@ public class Function{
 	 * @param call
 	 * @return
 	 */
-	public String function(List call) {
+	public String function(ArrayList<Object> call) {
 		//Content is called
 		String task = defun.get(call.get(0)).toString();
 		parameter = call.get(1); //Parameter is stored
@@ -89,9 +94,6 @@ public class Function{
 				num.add(result);
 			}
 		}
-		
-		
-
 		return result.toString();
 	}
 }
