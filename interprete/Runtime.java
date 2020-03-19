@@ -2,7 +2,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-class Runtime {
+class Runtime implements Context {
+
+    Context context = this;
 
     /**
      * String que contiene el programa completo para separar
@@ -13,24 +15,7 @@ class Runtime {
         this.program = program;
     }
 
-    /**
-     * Aqui se deben de pasar las instrucciones a sus respectivas listas
-     */
-    public void compile() {
-        split();
-        for (ArrayList<Object> function : functions) {
-            Function newFunction = new Function();
-            System.out.println("La funcion es: " + function);
-            newFunction.denifition(
-                (String)function.get(0),
-                (ArrayList<Object>)function.get(1),
-                (ArrayList<Object>)function.get(2)
-            );
-            compiledFunctios.add(newFunction);
-        }
-    }
-
-    ArrayList<Function> compiledFunctios = new ArrayList<>(); 
+    
     /**
      * para ejecutar un comando del usuario
      */
@@ -40,10 +25,29 @@ class Runtime {
         ArrayList<Object> params = (ArrayList<Object>)separateCommand(command).get(1); //unsafe cast
         for (Function function : compiledFunctios) {
             if (function.getName().equals(name)) {
-                function.function(params);
+                function.execute(params);
             }
         }
     }
+
+    /**
+     * Aqui se deben de pasar las instrucciones a sus respectivas listas
+     */
+    public void compile() {
+        split();
+        for (ArrayList<Object> function : functions) {
+            Function newFunction = new Function(context);
+            System.out.println("La funcion es: " + function);
+            newFunction.denifition(
+                (String)function.get(0),
+                (ArrayList<Object>)function.get(1),
+                (ArrayList<ArrayList<Object>>)function.get(2)
+            );
+            compiledFunctios.add(newFunction);
+        }
+    }
+
+    ArrayList<Function> compiledFunctios = new ArrayList<>();
 
     /**
      * Aqui se separa el string y se leen cada de cuantas cosas va a haber
@@ -75,8 +79,7 @@ class Runtime {
         /**
          * TODO: verificar si siempre una funcion va a necesitar que se le pasen las operaciones
          */
-        functions.get(contDefun.get(contDefun.size() - 1)).add(aritmetics.get(contOp.get(contOp.size() - 1)));
-        aritmetics.remove(aritmetics.size() - 1);
+        functions.get(contDefun.get(contDefun.size() - 1)).add(aritmetics); //por ahora se mete toda la lista pero hay que ver si se exceptuan ciertas operaciones
     }
 
     /**
@@ -158,6 +161,16 @@ class Runtime {
         }
         nameAndParameters.add(parameters);
         return nameAndParameters;
+    }
+
+    @Override
+    public Context getContext() {
+        return this.context;
+    }
+
+    @Override
+    public void setContext(Context context) {
+        //nothing to do;
     }
 
 }

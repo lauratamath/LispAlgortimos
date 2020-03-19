@@ -2,9 +2,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
 
-public class Function{
-	
-	OpAritmeticas OA = new OpAritmeticas();
+public class Function extends Instruction {
+
+	public Function(Context context) {
+		setContext(context);
+	}
 
 	class Param<K, V> {
 		K key;
@@ -31,7 +33,7 @@ public class Function{
 	private String name;//Function's name
 	private ArrayList<Param<String, Object>> parameters = new ArrayList<>();
 	private HashMap<String,Object> defun = new HashMap<>();;//Hold function and content
-	private List<Object> content; //Function's instruction (content)
+	private List<ArrayList<Object>> content; //Function's instruction (content)
 	private List<Object> nameParameter; //Parameter's name
 	private Object parameter; //Function's parameter
 	private String[] instr; //Store the functions  by parts
@@ -52,7 +54,7 @@ public class Function{
 	 * 3. Executable content
 	 * @param function
 	 */
-	public void denifition(String name, ArrayList<Object> params, ArrayList<Object> content) {
+	public void denifition(String name, ArrayList<Object> params, ArrayList<ArrayList<Object>> content) {
 		this.name = name;
 		this.nameParameter = params;
 		int contParam = 0;
@@ -69,7 +71,7 @@ public class Function{
 	 * @param call
 	 * @return
 	 */
-	public String function(ArrayList<Object> call) {
+	public String execute(ArrayList<Object> call) {
 		int contParam = 0;
 		for (Object value : call) {
 			for (Param<String, Object> param : parameters) {
@@ -78,12 +80,18 @@ public class Function{
 				}
 			}
 		}
-		//Content is called
+		for (ArrayList<Object> ins : content) {
+			selectInstruction(ins);
+		}
+
+
+
+		/*//Content is called
 		String task = defun.get(call.get(0)).toString();
 		parameter = call.get(1); //Parameter is stored
 		task.replaceAll(nameParameter.toString(), parameter.toString());
 		instr = task.split("");
-		
+	
 		//Introduce all possible values
 		for (int i = 0; i < instr.length; i++) {
 			String current = instr[i];
@@ -124,7 +132,7 @@ public class Function{
 				num.clear();
 				num.add(result);
 			}
-		}
+		}*/
 		return result.toString();
 	}
 }

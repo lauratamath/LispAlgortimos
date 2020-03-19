@@ -10,13 +10,20 @@
 
 import java.util.ArrayList;
 
-public class OpAritmeticas implements IOperaciones{
+/**
+ * la operacion no va a dar como contexto a sus hijos a si misma
+ * va a dar a su contexto
+ */
 
-	public OpAritmeticas() {}
+public class OpAritmeticas extends Instruction implements IOperaciones{
+
+	public OpAritmeticas(Context context) {
+		setContext(context);
+	}
 
 //Operaciones aritmeticas
 	//Metodo que realiza la operacion: reta
-	public double retar (ArrayList<Double> numeros){
+	public double restar (ArrayList<Double> numeros){
 		double resta = numeros.get(0);
 		if (numeros.size() == 1){
 		resta =- resta;
@@ -53,15 +60,17 @@ public class OpAritmeticas implements IOperaciones{
         return multiplica;
     }
     //Metodo que realiza la operacion: dividir
-    public double dividir( ArrayList<Double> numeros ) {
-    	double division = numeros.get(0); 
-        if ( numeros.size() != 1 ){
+    public double dividir(Object op1, Object op2) {
+		double division = 0;
+		System.out.println("param1 " + op1);
+		System.out.println("param2 " + op2);
+        /*if ( numeros.size() != 1 ){
             for (int i=1; i<numeros.size(); i++) {
                 division/= numeros.get(i);
             }
         } else {
         	return 1/division;
-        }
+        }*/
         return Math.round((division)*1000)/1000;
     }
     //Metodo para comparar el mayor
@@ -105,10 +114,11 @@ public class OpAritmeticas implements IOperaciones{
     }
 
     //Llamar el metodo del operando ingresado
-    public double aritmetica( String operador, ArrayList<Double> nums){
+    public double operar(String operador, Object op1, Object op2){
     	double operando = 0;
     	switch(operador){
-    		//Si quiere comparar si un numero es menor a otro
+			//estos creo que no van aqui, son cosas diferentes
+    		/*//Si quiere comparar si un numero es menor a otro
     		case "<":
 	    		operando = menor(nums);
 	            break;
@@ -120,21 +130,21 @@ public class OpAritmeticas implements IOperaciones{
            	case ">": 
             	operando = mayor(nums);
             	break;
-            //Si quiere divir un numero con otro
+            //Si quiere divir un numero con otro*/
             case "/": 
-            	operando = dividir(nums);
+            	operando = dividir(op1, op2);
             	break;
             //Si quiere multiplicar un numero con otro
             case "*": 
-            	operando = multiplicar(nums);
+            	//operando = multiplicar(nums);
             	break;
             //Si quiere sumar un numero con otro
             case "+": 
-            	operando = sumar(nums);
+            	//operando = sumar(nums);
             	break;	
             //Si quiere restar un numero con otro
             case "-": 
-            	operando = restar(nums);
+            	//operando = restar(nums);
             	break;
 		}
 		return operando;
@@ -144,8 +154,9 @@ public class OpAritmeticas implements IOperaciones{
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
 	@Override
-	public double restar(ArrayList<Double> numeros) {
+	public double dividir(ArrayList<Double> numeros) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
