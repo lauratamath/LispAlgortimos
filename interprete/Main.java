@@ -78,10 +78,15 @@ public class Main {
 		 * Se lee el archivo de texto
 		 */
         String program = textReader(fileName);
-        System.out.println(program);
+		System.out.println(program);
         /**
          * Se separa el programa para obtener las funciones
          */
+		Runtime runtime = new Runtime(program);
+		runtime.compile();
+		/**
+		 * Se pide al usuario que funcion quiere ejecutar
+		 */
 		scan.close();
 	}
 }
