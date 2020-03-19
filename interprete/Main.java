@@ -4,9 +4,9 @@
  * Algoritmos y estructuras de datos
  * Proyecto LISP
  * 
- * @author Julio Herrera
- * @author Oliver de León
- * @author Laurta Tamath
+ * @author Julio Herrera	19402
+ * @author Oliver de León	19270
+ * @author Laurta Tamath	19365
  * @version 1.0
  */
 import java.io.BufferedReader;
