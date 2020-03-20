@@ -40,8 +40,8 @@ public class Function extends Instruction {
 	private ArrayList<Double> num; //Store numbers
 	private ArrayList<String> sign; //Store signs
 	private Double result = 0.0; //Result
-	private ArrayList<Object> condition; //Store the condition
-	private ArrayList<Object> elseContent; //Store the else content
+	private ArrayList<ArrayList<Object>> condition; //Store the condition
+	private HashMap<Object,Object> conditionStat; //Store the each condition with its representative value
 
 
 	public String getName() {
@@ -98,9 +98,14 @@ public class Function extends Instruction {
 	 * @param condition
 	 * @return
 	 */
-	public Object cond(ArrayList<ArrayList<Object>> statement) {
-		condition = statement.get(0); //Store the conditional part
-		elseContent = statement.get(1); //Store the else conditional part
+	public Object cond(ArrayList<Object> statement) {
+		//Store the conditional part
+		condition = (ArrayList<ArrayList<Object>>) statement.get(0); 
+		
+		//Store the condition with its respective indicated value
+		for( ArrayList<Object> x : condition) {
+			conditionStat.put(x.get(0), x.get(1));
+		}
 		
 	}
 }
