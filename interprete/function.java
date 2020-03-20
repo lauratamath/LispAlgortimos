@@ -32,7 +32,7 @@ public class Function extends Instruction {
 	//Attributes
 	private String name;//Function's name
 	private ArrayList<Variable<String, Object>> parameters = new ArrayList<>();
-	private HashMap<String,Object> defun = new HashMap<>();;//Hold function and content
+	private HashMap<String,Object> defun = new HashMap<>();//Hold function and content
 	private List<ArrayList<Object>> content; //Function's instruction (content)
 	private List<Object> nameParameter; //Parameter's name
 	private Object parameter; //Function's parameter
@@ -40,6 +40,9 @@ public class Function extends Instruction {
 	private ArrayList<Double> num; //Store numbers
 	private ArrayList<String> sign; //Store signs
 	private Double result = 0.0; //Result
+	private ArrayList<Object> condition; //Store the condition
+	private ArrayList<Object> elseContent; //Store the else content
+
 
 	public String getName() {
 		return this.name;
@@ -88,5 +91,16 @@ public class Function extends Instruction {
 			result = selectInstruction(ins);
 		}
 		return result;
+	}
+	/**
+	 * A conditional is submitted, contains conditions with their
+	 * content and else executable content 
+	 * @param condition
+	 * @return
+	 */
+	public Object cond(ArrayList<ArrayList<Object>> statement) {
+		condition = statement.get(0); //Store the conditional part
+		elseContent = statement.get(1); //Store the else conditional part
+		
 	}
 }
