@@ -47,4 +47,11 @@ public interface IOperaciones{
 	post: retorna el resultado
 	**/
 	public double dividir ();
+
+	public double operaciones(String operacion, ArrayList<Double> num);
+	public double restar (ArrayList<Double> numeros);
+	public double sumar (ArrayList<Double> numeros);
+	public double multiplicar (ArrayList<Double> numeros);
+	public double dividir (ArrayList<Double> numeros);
+
 }
