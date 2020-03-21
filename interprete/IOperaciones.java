@@ -18,33 +18,40 @@ public interface IOperaciones{
 	pre: recive los dos parametros
 	post: retorna resultado
 	**/
-	public double operaciones(String operacion, ArrayList<Double> num);
+	public double operaciones(Context context);
 
 	/**
 	@param numeros los que seran operados
 	pre: recibe los numeros que se restaran
 	post: retorna el resultado
 	**/
-	public double restar (ArrayList<Double> numeros);
+	public double restar ();
 
 	/**
 	@param numeros los que seran operados
 	pre: recibe los numeros que se sumaran
 	post: retorna el resultado
 	**/
-	public double sumar (ArrayList<Double> numeros);
+	public double sumar ();
 
 	/**
 	@param numeros los que seran operados
 	pre: recibe los numeros que se multiplicaran
 	post: retorna el resultado
 	**/
-	public double multiplicar (ArrayList<Double> numeros);
+	public double multiplicar ();
 
 	/**
 	@param numeros los que seran operados
 	pre: recibe los numeros que se dividiran
 	post: retorna el resultado
 	**/
+	public double dividir ();
+
+	public double operaciones(String operacion, ArrayList<Double> num);
+	public double restar (ArrayList<Double> numeros);
+	public double sumar (ArrayList<Double> numeros);
+	public double multiplicar (ArrayList<Double> numeros);
 	public double dividir (ArrayList<Double> numeros);
+
 }

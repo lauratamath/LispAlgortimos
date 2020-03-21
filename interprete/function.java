@@ -40,6 +40,9 @@ public class Function extends Instruction {
 	private ArrayList<Double> num; //Store numbers
 	private ArrayList<String> sign; //Store signs
 	private Double result = 0.0; //Result
+	private ArrayList<ArrayList<Object>> condition; //Store the condition
+	private HashMap<Object,Object> conditionStat; //Store the each condition with its representative value
+
 
 	public String getName() {
 		return this.name;
@@ -96,6 +99,7 @@ public class Function extends Instruction {
 		}
 		return result;
 	}
+<<<<<<< HEAD
 
 	
 
@@ -113,4 +117,22 @@ public class Function extends Instruction {
 		return nameParameter;
 	}
 
+=======
+	/**
+	 * A conditional is submitted, contains conditions with their
+	 * content and else executable content 
+	 * @param condition
+	 * @return
+	 */
+	public Object cond(ArrayList<Object> statement) {
+		//Store the conditional part
+		condition = (ArrayList<ArrayList<Object>>) statement.get(0); 
+		
+		//Store the condition with its respective indicated value
+		for( ArrayList<Object> x : condition) {
+			conditionStat.put(x.get(0), x.get(1));
+		}
+		
+	}
+>>>>>>> 1f3117a5fb8ce9446b856b9fd5faaa310f6603c2
 }

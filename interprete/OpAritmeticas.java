@@ -32,29 +32,14 @@ public class OpAritmeticas extends Instruction implements IOperaciones{
 		return op1d - op2d;
 	}
 	//Metodo que realiza la operacion: suma
-	public double sumar(ArrayList<Double> numeros){
-		double suma =0;
-		if(numeros.size()== 2){
-			suma = numeros.get(0);
-		}else{
-			for (double numeros1: numeros){
-				suma += numeros1;
-			}
-		}
-		return suma;
+	public double sumar(){
+		System.out.println("a sumar " + op1d + " + "+ op2d);
+		return op1d + op2d;
 	}
 	//Metodo que realiza la operacion: multiplicar
-	 public double multiplicar( ArrayList<Double> numeros )  {
-    	double multiplica = 1;
-        if ( numeros.size()==1 ) {
-        	multiplica = numeros.get(0);
-        }
-        else {
-            for (double num: numeros) {
-                multiplica*= num;
-            }
-        }
-        return multiplica;
+	 public double multiplicar()  {
+    	System.out.println(" a sumar "+ op1d + " * "+op2d);
+    	return op1d * op2d;
     }
     //Metodo que realiza la operacion: dividir
     public double dividir() {
@@ -110,20 +95,6 @@ public class OpAritmeticas extends Instruction implements IOperaciones{
 		double operando = 0;
 		setOperators(op1, op2);
     	switch(operador){
-			//estos creo que no van aqui, son cosas diferentes
-    		/*//Si quiere comparar si un numero es menor a otro
-    		case "<":
-	    		operando = menor(nums);
-	            break;
-	         //Si quiere comparar si un numero es igual a otro
-	    	 case "=": 
-            	operando = igual(nums);
-            	break;
-            //Si quiere comparar si un numero es mayor a otro
-           	case ">": 
-            	operando = mayor(nums);
-            	break;
-            //Si quiere divir un numero con otro*/
             case "/": 
             	operando = dividir();
             break;
@@ -195,6 +166,24 @@ public class OpAritmeticas extends Instruction implements IOperaciones{
 	public ArrayList<Function> getFunctions() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public double operaciones(Context context) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public double sumar(ArrayList<Double> numeros) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public double multiplicar(ArrayList<Double> numeros) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
     
 }
