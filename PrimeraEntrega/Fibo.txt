@@ -1,0 +1,16 @@
+
+CL-USER 1 > (defun fibonacci (n &optional (a 0) (b 1))
+  (if (zerop n)
+      nil
+      (cons a (fibonacci (1- n) b (+ a b)))))
+FIBONACCI
+
+CL-USER 2 > 
+(fibonacci 5)
+(0 1 1 2 3)
+
+CL-USER 3 > 
+(fibonacci 9)
+(0 1 1 2 3 5 8 13 21)
+
+CL-USER 4 > 

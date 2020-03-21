@@ -1,0 +1,3 @@
+En las listas simples: el inicio es 0(1) y el final o(n). No es constante
+
+En las listas dobles: el inicio es 0(1) y el final 0(1). Toda las lista es constante en su implementación. Es decir, se tarda el mismo tiempo en ejecutarse
