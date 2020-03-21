@@ -6,6 +6,7 @@
 * @author Julio Herrera 19402
 * @author Oliver de León 19270
 * @version 1; 19/03/2020
+* @version 2; 20/03/2020
 * Interface que define todas las operaciones aritmeticas
 **/
 
@@ -37,19 +38,35 @@ public class Pruebas{
 	}
 
 	@Test
-	public void testFibonacci(){
-
+	public void testResta(){
+		OpArtimeticas test3 = new OpArtimeticas();
+		//Los numeros que se restaran
+		double op1 = 8.0
+		double op2 = 4.1
+		//El resultado que se espera
+		double resultado = test1.restar(op1, op2);
+		assertEquals(3.9, resultado);
 	}
 
 	@Test
-	public void testFahrenheit(){
-
+	public void testDivision(){
+		OpArtimeticas test4 = new OpArtimeticas();
+		//Numero a dividir
+		double operando1 = 16
+		double operando2 = 2
+		//Resultado esperado
+		double resultado = test2.dividir(operando1, operando2);
+		assertEquals(8, resultado);
 	}
 
 	@Test
-	public void testCelsius(){
-
+	public void separar(){
+		Runtime test5 = new Runtime();
+		String uno = "hola ";
+		String dos = "como ";
+		String tres = "estas? ";
+		String resultadp = test5.separateCommand(uno, dos, tres);
+		assertEquals("hola ", "como", "estas, resultadp");
 	}
-
 
 }
