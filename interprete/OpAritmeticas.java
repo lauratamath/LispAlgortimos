@@ -60,7 +60,11 @@ public class OpAritmeticas extends Instruction implements IOperaciones{
     public double dividir() {
 		System.out.println("a dividir " + op1d + "/" + op2d);
 		return op1d/op2d;
-    }
+	}
+	public double suma() {
+		System.out.println("a sumar " + op1d + "+" + op2d);
+		return op1d+op2d;
+	}
     //Metodo para comparar el mayor
     private double mayor( ArrayList<Double> numeros ) {
         if ( numeros.size() == 1 ) {
@@ -122,15 +126,15 @@ public class OpAritmeticas extends Instruction implements IOperaciones{
             //Si quiere divir un numero con otro*/
             case "/": 
             	operando = dividir();
-            	break;
+            break;
             //Si quiere multiplicar un numero con otro
             case "*": 
             	//operando = multiplicar(nums);
-            	break;
+            break;
             //Si quiere sumar un numero con otro
             case "+": 
-            	//operando = sumar(nums);
-            	break;	
+            	operando = suma();
+            break;	
             //Si quiere restar un numero con otro
             case "-": 
             	operando = restar();
@@ -155,14 +159,14 @@ public class OpAritmeticas extends Instruction implements IOperaciones{
 		}
 		if (isOp1) {
 			if (op1.toString().contains("[")) { //es una instruccion
-				op1d = Double.parseDouble(String.valueOf(selectInstruction((ArrayList<Object>)op1, getContext())));
+				op1d = Double.parseDouble(String.valueOf(selectInstruction((ArrayList<Object>)op1)));
 			} else { //es algo mas
 				op1d = Double.parseDouble(searchVariable(op1.toString()).toString());
 			}
 		}
 		if (isOp2) {
 			if (op2.toString().contains("[")) { //es una instruccion
-				op2d = Double.parseDouble(String.valueOf(selectInstruction((ArrayList<Object>)op2, getContext())));
+				op2d = Double.parseDouble(String.valueOf(selectInstruction((ArrayList<Object>)op2)));
 			} else {//es algo mas
 				op2d = Double.parseDouble(searchVariable(op1.toString()).toString());
 			}
@@ -185,6 +189,12 @@ public class OpAritmeticas extends Instruction implements IOperaciones{
 	public double restar(ArrayList<Double> numeros) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public ArrayList<Function> getFunctions() {
+		// TODO Auto-generated method stub
+		return null;
 	}
     
 }

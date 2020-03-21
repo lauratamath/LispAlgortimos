@@ -33,8 +33,8 @@ public class Function extends Instruction {
 	private String name;//Function's name
 	private ArrayList<Variable<String, Object>> parameters = new ArrayList<>();
 	private HashMap<String,Object> defun = new HashMap<>();;//Hold function and content
-	private List<ArrayList<Object>> content; //Function's instruction (content)
-	private List<Object> nameParameter; //Parameter's name
+	private ArrayList<ArrayList<Object>> content; //Function's instruction (content)
+	private ArrayList<Object> nameParameter; //Parameter's name
 	private Object parameter; //Function's parameter
 	private String[] instr; //Store the functions  by parts
 	private ArrayList<Double> num; //Store numbers
@@ -74,8 +74,11 @@ public class Function extends Instruction {
 	public Object execute(ArrayList<Object> call) {
 		Object result = null;
 		int contParam = 0;
+		System.out.println(call);
 		for (Object value : call) {
 			for (Variable<String, Object> param : parameters) {
+				System.out.println(param.getValue());
+				System.out.println(contParam);
 				if ((int)param.getValue() == contParam) {
 					param.setValue(value);
 					System.out.println("una vez");
@@ -84,9 +87,30 @@ public class Function extends Instruction {
 			}
 		}
 		System.out.println("en variables " + getVariables().get(0).getValue());
+		setVariables(this.variables);
+		for (Variable var : getVariables()) {
+			System.out.println(" llllll " + var.getKey() + var.getValue());
+		}
 		for (ArrayList<Object> ins : content) { //por el momento solo devuelve un resultado
 			result = selectInstruction(ins);
 		}
 		return result;
 	}
+
+	
+
+	@Override
+	public ArrayList<Function> getFunctions() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public List<ArrayList<Object>> getContent() {
+		return content;
+	}
+
+	public List<Object> getNameParameter() {
+		return nameParameter;
+	}
+
 }
